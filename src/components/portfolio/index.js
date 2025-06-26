@@ -48,6 +48,7 @@ import "./index.css";
 const Portfolio = () => {
     const [theme, setTheme] = useState("light");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [renderPage, setRenderPage] = useState("home");
 
     const logoImg = theme === "light"
         ? "https://res.cloudinary.com/dbbpvtoge/image/upload/v1750864837/Logo_uvqufa.svg"
@@ -67,25 +68,25 @@ const Portfolio = () => {
         return (
             <div className="social-links-email">
                 <div className="social-links ">
-                    <Link href="https://www.facebook.com/" target="_blank">
+                    <Link href="https://www.facebook.com/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920251/facebook_fzxa3l.png" alt="facebook" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/facebook-white_gvmxlf.png" alt="facebook" />}
                     </Link>
-                    <Link href="https://www.instagram.com/" target="_blank">
+                    <Link href="https://www.instagram.com/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920251/insta-black_tu9ukz.png" alt="instagram" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/insta-white_i2tgmr.png" alt="instagram" />}
                     </Link>
-                    <Link href="https://twitter.com/" target="_blank">
+                    <Link href="https://twitter.com/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920252/twitter_kuzx5w.png" alt="twitter" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/twitter-white_s5rfw5.png" alt="twitter" />}
                     </Link>
-                    <Link href="https://github.com/" target="_blank">
+                    <Link href="https://github.com/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920251/git_iezoih.png" alt="github" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/git-white_tto5fy.png" alt="github" />}
                     </Link>
-                    <Link href="https://www.linkedin.com/" target="_blank">
+                    <Link href="https://www.linkedin.com/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920251/linked-in_khvdaz.png" alt="linkedin" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/linked-in-white_wt1cem.png" alt="linkedin" />}
                     </Link>
-                    <Link href="https://www.telegram.org/" target="_blank">
+                    <Link href="https://www.telegram.org/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920251/telegram_qpyqrm.png" alt="telegram" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/telegram-white_gb7vvy.png" alt="telegram" />}
                     </Link>
-                    <Link href="https://www.youtube.com/" target="_blank">
+                    <Link href="https://www.youtube.com/" target="_blank" className="social-icon">
                         {theme === "light" ? <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920251/koo_vqvllu.png" alt="koo" /> : <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750920588/koo_white_cpyd9o.png" alt="koo" />}
                     </Link>
 
@@ -105,12 +106,12 @@ const Portfolio = () => {
                     </div>
 
                     <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-                        <a href="#" className="nav-link">Home</a>
-                        <a href="#" className="nav-link">About</a>
-                        <a href="#" className="nav-link">Resume</a>
-                        <a href="#" className="nav-link">Skills</a>
-                        <a href="#" className="nav-link">Projects</a>
-                        <a href="#" className="nav-link">Contact</a>
+                        <a href="#" className={`nav-link ${renderPage === "home" ? 'active' : ''}`} onClick={() => setRenderPage("home")}>Home</a>
+                        <a href="#" className={`nav-link ${renderPage === "about" ? 'active' : ''}`} onClick={() => setRenderPage("about")}>About</a>
+                        <a href="#" className={`nav-link ${renderPage === "resume" ? 'active' : ''}`} onClick={() => setRenderPage("resume")}>Resume</a>
+                        <a href="#" className={`nav-link ${renderPage === "skills" ? 'active' : ''}`} onClick={() => setRenderPage("skills")}>Skills</a>
+                        <a href="#" className={`nav-link ${renderPage === "projects" ? 'active' : ''}`} onClick={() => setRenderPage("projects")}>Projects</a>
+                        <a href="#" className={`nav-link ${renderPage === "contact" ? 'active' : ''}`} onClick={() => setRenderPage("contact")}>Contact</a>
                         <button className="switch_theme" onClick={toggleTheme}>
                             <img src={themeBtnImg} alt="theme switch" />
                         </button>
@@ -124,7 +125,7 @@ const Portfolio = () => {
                 </div>
             </nav>
 
-            <div className="content d-flex flex-row align-items-center justify-content-between">
+            {renderPage === "home" && <div className="content d-flex flex-row align-items-center justify-content-between">
                 <div className="info ">
                     <h2>Hello!</h2>
                     <h1>
@@ -141,26 +142,26 @@ const Portfolio = () => {
                 <div className="image-container">
                     <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750864840/person_yk3zxa.png" alt="person-img" />
                 </div>
-            </div>
+            </div>}
 
-            <div className="about">
+            {renderPage === "about" && <div className="about">
                 <div className="about-left">
 
                 </div>
                 <div className="about-info">
-                    <h2 className="about-info-h2"><bold>T</bold>his is it. ;</h2>
-                    <p>Anish Kr. Sinha is an Indian <b>UI/UX Designer & Front End Developer</b> with a passion for designing beautiful and fuctional user experiences. Typically, he’s Driven & permanently Curious. He’s obsessed with designing things and even more obsessed with designing cool & clean stuff for the web and mobile. He has been in the business of creating since he hung his first painting on the wall when he was 11.</p>
+                    <h2 className="about-info-h2"><b>T</b>his is it. ;</h2>
+                    <p className="about-info-p">Anish Kr. Sinha is an Indian <b>UI/UX Designer & Front End Developer</b> with a passion for designing beautiful and fuctional user experiences. Typically, he’s Driven & permanently Curious. He’s obsessed with designing things and even more obsessed with designing cool & clean stuff for the web and mobile. He has been in the business of creating since he hung his first painting on the wall when he was 11.<br/>
 
-                    <p>He holds a <b>bachelor degree in Computer Applications</b>. During his graduation, he has been actively involved in the web design community for the last 3 years. he has designed websites for small businesses, events, nonprofits and more. Currently he’s based in Bihar, <b>India.</b> Where he’s working as an independent creative. </p>
+                    He holds a <b>bachelor degree in Computer Applications</b>. During his graduation, he has been actively involved in the web design community for the last 3 years. he has designed websites for small businesses, events, nonprofits and more. Currently he’s based in Bihar, <b>India.</b> Where he’s working as an independent creative. </p>
 
-                    <p>His interests, however, extend beyond the web and he loves helping people with branding and print design. He even loves designing <b>3D floor plan.</b></p>
+                    <p className="about-info-p">His interests, however, extend beyond the web and he loves helping people with branding and print design. He even loves designing <b>3D floor plan.</b></p>
 
-                    <p>When he’s not designing, he’s probably hanging out with his girlfriend, watching series, sketching or messing around on something inspired by YouTube tutorials.</p>
+                    <p className="about-info-p">When he’s not designing, he’s probably hanging out with his girlfriend, watching series, sketching or messing around on something inspired by YouTube tutorials.</p>
                 </div>
                 <div className="about-left-image">
                     <img src="https://res.cloudinary.com/dbbpvtoge/image/upload/v1750909384/hand_gqturc.png" alt="about-left-img" />
                 </div>
-            </div>
+            </div>}
             {renderSocialLinksAndEmail()}
         </div>
     );
